@@ -12,7 +12,7 @@
     "element-plus": "^2.3.4",
     "vue": "^3.2.37",
     "vuex": "^4.1.0",
-    "vue-router": "^3.5.2"
+    "vue-router": "^4.4.0"
   },
   "devDependencies": {
     "@babel/types": "^7.18.10",
