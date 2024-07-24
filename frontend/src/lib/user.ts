@@ -34,6 +34,31 @@ function isLogin(): boolean {
     return cookies.get("sid") !== null && cookies.get("token") !== null;
 }
 
+function submitLogin(username: string, password: string) {
+    fetch(`${apihost}/api/v2/userlogin`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+        })
+        .then((res) => res.json())
+        .then((res) => {
+            const { code, msg, data } = res;
+            if (code === 0) {
+                store.state.githubOauth = data;
+                cookies.set("sid",data['sid'])
+                cookies.set("token",data['token'])
+                store.state.logged = true;
+                succ('login success');
+            } else {
+                warn(msg);
+            }
+        }).catch((err) => {
+            fail(err.message);
+        });
+}
+
 function githubOauth() {
     fetch(`${apihost}/api/v2/githuboauth`, { method: "GET" })
         .then((res) => res.json())
@@ -141,6 +166,7 @@ function setRebinding() {
 
 export {
     isLogin,
+    submitLogin,
     githubOauth,
     logout,
     getUserInfo,

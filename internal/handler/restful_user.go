@@ -74,10 +74,14 @@ func (w *restfulHandler) loginuser(c *gin.Context) {
 		}
 	}
 
-	logrus.Infof("[restful] login success.")
-	setCookie(c, "sid", u.Sid)
-	setCookie(c, "token", u.Token)
-	c.Redirect(http.StatusFound, "/")
+	logrus.Infof("[restful] login submit success.")
+	// setCookie(c, "sid", u.Sid)
+	// setCookie(c, "token", u.Token)
+	// c.Redirect(http.StatusFound, "/")
+	ReturnJSON(c, map[string]any{
+		"sid":   u.Sid,
+		"token": u.APIToken,
+	})
 }
 
 func (w *restfulHandler) login(c *gin.Context) {

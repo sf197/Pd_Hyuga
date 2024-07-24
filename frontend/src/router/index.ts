@@ -9,9 +9,6 @@ const routes = [
       component: Login
     },
     {
-      path: '/api/v2/:pathMatch(.*)*'
-    },
-    {
         path: '/', 
         component: IndexHome
     },

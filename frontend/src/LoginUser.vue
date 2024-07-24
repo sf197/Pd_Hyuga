@@ -12,6 +12,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { submitLogin } from "./lib/user";
 
 export default defineComponent({
   data() {
@@ -29,7 +30,10 @@ export default defineComponent({
       // 检查用户名和密码是否为空
       if (!this.username || !this.password) {
         alert('用户名或密码不能为空');
-        return; // 防止表单提交
+        return;
+      }else{
+        console.log("login submit test")
+        submitLogin(this.username,this.password)
       }
 
       location.href = "./api/v2/userlogin?username=" + this.username + "&password=" + this.password;
