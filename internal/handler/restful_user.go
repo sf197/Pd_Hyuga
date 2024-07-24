@@ -79,8 +79,9 @@ func (w *restfulHandler) loginuser(c *gin.Context) {
 	// setCookie(c, "token", u.Token)
 	// c.Redirect(http.StatusFound, "/")
 	ReturnJSON(c, map[string]any{
-		"sid":   u.Sid,
-		"token": u.APIToken,
+		"sid":      u.Sid,
+		"token":    u.APIToken,
+		"apiToken": u.APIToken,
 	})
 }
 

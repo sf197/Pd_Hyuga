@@ -36,7 +36,7 @@ export default defineComponent({
         submitLogin(this.username,this.password)
       }
 
-      location.href = "./api/v2/userlogin?username=" + this.username + "&password=" + this.password;
+      //location.href = "./api/v2/userlogin?username=" + this.username + "&password=" + this.password;
       // 这里可以添加实际的登录请求
     },
   },
