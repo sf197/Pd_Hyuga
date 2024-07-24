@@ -69,7 +69,7 @@ func (r *restfulHandler) RegisterHandler(g *gin.Engine) {
 
 	v2 := g.Group("/api/v2")
 	v2.GET("/login", r.login)
-	v2.GET("/userlogin", r.loginuser)
+	v2.POST("/userlogin", r.loginuser)
 	v2.GET("/githuboauth", r.githuboauth)
 
 	user := v2.Group("user")
