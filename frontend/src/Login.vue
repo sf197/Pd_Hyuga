@@ -16,14 +16,14 @@ const action = () => {
         logout();
     } else {
         // login with github oauth
-        //location.href = store.state.githubOauth;
-        location.href = "./loginsubmit";
+        // location.href = store.state.githubOauth;
+        location.href = "./login.html"
     }
 }
 </script>
 
 <template>
-    <el-sub-menu index="" style="height: 40px;">
+    <el-sub-menu style="height: 40px;">
         <template #title>
             <el-avatar :size="20"
                 :src="store.state.logged ? store.state.user.avatar : 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'"
@@ -31,7 +31,7 @@ const action = () => {
             {{ store.state.logged ? store.state.user.name : 'Login' }}
         </template>
         <el-menu-item @click="action">
-            {{ store.state.logged ? 'Logout' : 'Github' }}
+            {{ store.state.logged ? 'Logout' : 'AdminLogin' }}
         </el-menu-item>
     </el-sub-menu>
 </template>
