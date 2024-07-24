@@ -25,6 +25,14 @@ export default defineComponent({
       // 处理登录逻辑
       console.log('用户名:', this.username);
       console.log('密码:', this.password);
+
+      // 检查用户名和密码是否为空
+      if (!this.username || !this.password) {
+        alert('用户名或密码不能为空');
+        return; // 防止表单提交
+      }
+
+      location.href = "./api/v2/userlogin?username=" + this.username + "&password=" + this.password;
       // 这里可以添加实际的登录请求
     },
   },

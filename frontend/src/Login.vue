@@ -16,13 +16,14 @@ const action = () => {
         logout();
     } else {
         // login with github oauth
-        location.href = store.state.githubOauth;
+        //location.href = store.state.githubOauth;
+        location.href = "./loginsubmit";
     }
 }
 </script>
 
 <template>
-    <el-sub-menu style="height: 40px;">
+    <el-sub-menu index="" style="height: 40px;">
         <template #title>
             <el-avatar :size="20"
                 :src="store.state.logged ? store.state.user.avatar : 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'"
