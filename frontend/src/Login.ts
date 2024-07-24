@@ -1,10 +1,6 @@
 import { createApp } from 'vue';
 import { ElMessage } from 'element-plus';
 import 'element-plus/theme-chalk/el-message.css';
-import LoginUser from './LoginUser.vue';
-import { store, key } from './lib/store';
+import App from './LoginUser.vue';
 
-const app = createApp(LoginUser);
-app.use(store, key);
-app.use(ElMessage);
-app.mount('#app');
+createApp(App).mount('#app')
