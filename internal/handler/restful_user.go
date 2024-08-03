@@ -80,7 +80,7 @@ func (w *restfulHandler) loginuser(c *gin.Context) {
 	// c.Redirect(http.StatusFound, "/")
 	ReturnJSON(c, map[string]any{
 		"sid":      u.Sid,
-		"token":    u.APIToken,
+		"token":    u.Token,
 		"apiToken": u.APIToken,
 	})
 }

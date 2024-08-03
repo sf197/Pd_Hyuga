@@ -51,6 +51,7 @@ function submitLogin(username: string, password: string) {
                 cookies.set("token",data['token'])
                 store.state.logged = true;
                 succ('login success');
+                location.href = "/"
             } else {
                 warn(msg);
             }

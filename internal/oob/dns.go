@@ -48,7 +48,14 @@ func (d *Dns) ServeDNS(w dns.ResponseWriter, r *dns.Msg) {
 
 	var user *db.User
 	dnsName := strings.Trim(question.Name, ".")
-	sid := parseSid(dnsName, d.cnf.Main)
+	//sid := parseSid(dnsName, d.cnf.Main)
+	sid := ""
+	for _, ns := range d.cnf.NS {
+		sid_temp := parseSid(dnsName, ns)
+		if sid_temp != "" {
+			sid = sid_temp
+		}
+	}
 	if sid != "" {
 		u, err := d.db.GetUserBySid(sid)
 		if err == nil && u != nil {
@@ -73,6 +80,7 @@ func (d *Dns) ServeDNS(w dns.ResponseWriter, r *dns.Msg) {
 		Class:  dns.ClassINET,
 		Ttl:    DefaultTTL,
 	}
+	logrus.Infof("[oob][dns] question Qtype is '%d'", question.Qtype)
 	switch question.Qtype {
 	case dns.TypeANY:
 		fallthrough
