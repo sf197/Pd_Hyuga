@@ -189,5 +189,6 @@ export {
     getUserInfo,
     setNotify,
     resetToken,
+    resetTokenSid,
     setRebinding
 };

@@ -4,7 +4,7 @@ import { ElInput, ElMessage } from 'element-plus';
 import { User, UserFilled, Key, Link, Tools, CopyDocument, View, Hide, Refresh, InfoFilled, SuccessFilled } from '@element-plus/icons-vue';
 import useClipboard from 'vue-clipboard3';
 import { useStore } from "./lib/store";
-import { resetToken, setNotify, setRebinding } from "./lib/user";
+import { resetToken, resetTokenSid, setNotify, setRebinding } from "./lib/user";
 import { validateIP } from "./lib/utils";
 
 const store = useStore();
