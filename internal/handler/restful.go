@@ -80,6 +80,7 @@ func (r *restfulHandler) RegisterHandler(g *gin.Engine) {
 		user.POST("/notify", r.notify)       // set user notify
 		user.POST("/rebinding", r.rebinding) // set user rebinding
 		user.POST("/reset", r.reset)         // reset user api token
+		user.POST("/resetsid", r.resetSid)   // reset user api token and Sid
 		user.POST("/logout", r.logout)       // logout
 	}
 	record := v2.Group("record")

@@ -34,10 +34,21 @@ const copy = async (data: string) => {
 }
 // setting
 const opened = ref(false);
+const resetsid = () => {
+    resetTokenSid(
+        () => {
+            if (!
+            ) {
+                token.value = store.state.user.token;
+            } 
+        }
+    );
+};
 const reset = () => {
     resetToken(
         () => {
-            if (!hides) {
+            if (!
+            ) {
                 token.value = store.state.user.token;
             }
         }
@@ -153,6 +164,18 @@ const parseTime = (time: number): string => {
                     <el-descriptions-item>
                         <el-text>
                             <el-icon>
+                                <User />
+                            </el-icon>
+                            <el-tag style="margin-left: 5px;margin-right: 8px;">
+                                {{ store.state.user.data.nsdomain }}
+                            </el-tag>
+                            <el-button text size="small" :icon="CopyDocument" circle
+                                @click="copy(store.state.user.data.nsdomain)" />
+                        </el-text>
+                    </el-descriptions-item>
+                    <el-descriptions-item>
+                        <el-text>
+                            <el-icon>
                                 <Key />
                             </el-icon>
                             <el-tag style="margin-left: 5px;margin-right: 8px;">
@@ -226,6 +249,15 @@ const parseTime = (time: number): string => {
     <!-- settting  -->
     <el-drawer v-model="opened" title="Settings" direction="rtl">
         <el-form size="small">
+            <el-divider content-position="left" style="margin-top: 0px;">Sid Random Setting</el-divider>
+            <el-form-item label="Token">
+                <el-popconfirm width="300" title="Are you sure to reset the Sid token?" confirm-button-text="Yes"
+                    cancel-button-text="No" :icon="InfoFilled" icon-color="#626AEF" @confirm="resetsid">
+                    <template #reference>
+                        <el-button type="primary" :icon="Refresh">ResetSid</el-button>
+                    </template>
+                </el-popconfirm>
+            </el-form-item>
             <el-divider content-position="left" style="margin-top: 0px;">Token Setting</el-divider>
             <el-form-item label="Token">
                 <el-popconfirm width="300" title="Are you sure to reset the API token?" confirm-button-text="Yes"

@@ -146,6 +146,22 @@ function resetToken(succcallback: Function) {
         });
 }
 
+function resetTokenSid(succcallback: Function) {
+    fetch(`${apihost}/api/v2/user/resetsid`, { method: "POST" })
+        .then((res) => res.json())
+        .then((res) => {
+            const { code, msg, data } = res;
+            if (code === 0) {
+                getUserInfo(succcallback);
+                succ('reset token and sid success');
+            } else {
+                warn(msg);
+            }
+        }).catch((err) => {
+            fail(err.message);
+        });
+}
+
 function setRebinding() {
     fetch(`${apihost}/api/v2/user/rebinding`, {
         method: "POST",

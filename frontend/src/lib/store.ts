@@ -14,6 +14,7 @@ export interface State {
         rebinding: string[],
         data: {
             subdomain: string,
+            nsdomain: string,
             rdomain: string,
             ldap: string,
             rmi: string,
@@ -60,6 +61,7 @@ export const store = createStore<State>({
             rebinding: [],
             data: {
                 subdomain: '',
+                nsdomain: '',
                 rdomain: '',
                 ldap: '',
                 rmi: '',

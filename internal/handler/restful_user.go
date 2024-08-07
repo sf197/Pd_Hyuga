@@ -224,6 +224,7 @@ func (w *restfulHandler) info(c *gin.Context) {
 		"rebinding": user.DnsRebind.DNS,
 		"data": map[string]string{
 			"subdomain": fmt.Sprintf("%s.%s", user.Sid, w.oob.DNS.Main),
+			"nsdomain":  fmt.Sprintf("%s.%s", user.Sid, w.oob.DNS.NS[0]),
 			"rdomain":   fmt.Sprintf("r.%s.%s", user.Sid, w.oob.DNS.Main),
 			"ldap":      fmt.Sprintf("ldap://%s:%s/%s/", w.oob.DNS.Main, port, user.Sid),
 			"rmi":       fmt.Sprintf("rmi://%s:%s/%s/", w.oob.DNS.Main, port, user.Sid),
@@ -366,6 +367,22 @@ func (w *restfulHandler) reset(c *gin.Context) {
 		return
 	}
 
+	user.APIToken = db.GenUserToken()
+	if err := w.db.UpdateUser(user); err != nil {
+		ReturnError(c, errDatabase, err)
+		return
+	}
+
+	ReturnJSON(c, nil)
+}
+func (w *restfulHandler) resetSid(c *gin.Context) {
+	user, err := w.db.GetUserBySid(c.GetString("sid"))
+	if err != nil {
+		ReturnError(c, errDatabase, err)
+		return
+	}
+
+	user.Sid = w.db.GenUserSid()
 	user.APIToken = db.GenUserToken()
 	if err := w.db.UpdateUser(user); err != nil {
 		ReturnError(c, errDatabase, err)

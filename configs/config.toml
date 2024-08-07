@@ -30,7 +30,7 @@
         limit = 1000
 
 [web]
-    address = "localhost:8080"
+    address = "localhost:80"
     [web.github]
         client-id = ""
         client-secret = ""
