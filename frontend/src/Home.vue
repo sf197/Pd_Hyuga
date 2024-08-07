@@ -37,8 +37,7 @@ const opened = ref(false);
 const resetsid = () => {
     resetTokenSid(
         () => {
-            if (!
-            ) {
+            if (!hides) {
                 token.value = store.state.user.token;
             } 
         }
@@ -47,8 +46,7 @@ const resetsid = () => {
 const reset = () => {
     resetToken(
         () => {
-            if (!
-            ) {
+            if (!hides) {
                 token.value = store.state.user.token;
             }
         }
